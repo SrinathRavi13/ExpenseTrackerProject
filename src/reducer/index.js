@@ -29,7 +29,7 @@ const getTotalTaxes = (expenseList) => {
 }
 
 /**
- * 
+ * Redux Reducer method - expenseReducer
  * @param {object} state - Redux State Object
  * @param {*} action - action Value
  */
