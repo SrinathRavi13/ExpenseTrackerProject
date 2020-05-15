@@ -6,32 +6,40 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { fetch_Api_Data} from '../actions/actions'
 
+/**
+ * Home page
+ * The landing page of the application
+ * @author - Srinath Ravi <srinath_ravi@hotmail.com>
+ */
 class HomePage extends React.Component {
 
+    /** Local state - Handle modal popup Add Expense */
     state = { showModal_AddExpense: false }
 
     componentDidMount() {
-        this.props.fetch_Api_Data()
+        /** Fetch expenses list */
+        this.props.fetch_Api_Data() 
     }
 
+    /** Close Add Expense Modal popup */
     handleClose = () => {
+        
         this.setState({ showModal_AddExpense: false });
     }
 
+    /** Close the Modal popup  once Expense Added*/
     handleSave = (val) => {
         this.setState({ showModal_AddExpense: val });
     }
 
+    /** Open Add Expense Modal popup */
     handleOpenModal = () => {
         this.setState({showModal_AddExpense : true});
     }
 
-    handleClose = () => {
-        this.setState({ showModal_AddExpense: false });
-    }
-
     render() {
 
+        /** Render Home Page*/
         const {totalAmount, totalTax} = this.props;
         const {showModal_AddExpense} = this.state;
 
@@ -67,6 +75,10 @@ class HomePage extends React.Component {
     }
 }
 
+/** Map the Redux state value to the component properties 
+ * @param {object} state - Redux State 
+ * @return {expenseList, totalAmount, TotalTax}
+ */
 const mapStateToProps = state => {
     return {
         expenseList: state.expenseList,
@@ -75,10 +87,17 @@ const mapStateToProps = state => {
     }
 }
 
+
+/**
+ * Map actions to props
+ * @param {callback} dispatch 
+ * @return {Object} - Actions maped to props
+ */
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         fetch_Api_Data : fetch_Api_Data
     }, dispatch)
 }
 
+/** Connect Redux to the Component*/
 export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
