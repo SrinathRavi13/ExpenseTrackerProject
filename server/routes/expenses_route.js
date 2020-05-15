@@ -2,7 +2,7 @@
 
 /**
  * Express router methods
- * @author
+ * @author - Srinath Ravi <srinath_ravi@hotmail.com>
  */
 
 const express = require('express');
@@ -11,7 +11,10 @@ const expensesModel = require('../model/expenses');
 const TAXPERCENTAGE = Number(15/100);
 
 /**
- * 
+ * Get request router
+ * @param {string} / - URL string
+ * @param {function} callback 
+ * @return {json} - The expense List
  */
 router.get('/', function (req, res) {
     expensesModel.getAllExpenses((err,data) => {
@@ -20,6 +23,12 @@ router.get('/', function (req, res) {
     });
 })
 
+/**
+ * Put request router
+ * @param {string} /add - URL string
+ * @param {function} callback 
+ * @return {json} - The expense List
+ */
 router.put('/add', function (req, res) {
     let expense = req.body.expense;
     if(expense){
@@ -35,6 +44,12 @@ router.put('/add', function (req, res) {
     }
 })
 
+/**
+ * Put request router
+ * @param {string} /update - URL string
+ * @param {function} callback 
+ * @return {json} - The expense List
+ */
 router.put('/update', function (req, res) {
     let expense = req.body.expense;
     if(expense){
@@ -50,6 +65,12 @@ router.put('/update', function (req, res) {
     }
 })
 
+/**
+ * Delete request router
+ * @param {string} /delete - URL string
+ * @param {function} callback 
+ * @return {json} - The expense List
+ */
 router.delete('/delete', function (req, res) {
     let key = Number(req.query.key);
     expensesModel.deleteExpense(key,(err,data) => {
