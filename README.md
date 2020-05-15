@@ -1,6 +1,6 @@
 # ExpenseTracker
 
-This is a basic Expense Tracker application used to track all your expenses.  
+This is a basic Expense Tracker application used to track expenses.  
 
 The following operations can be performed on the expense records using this application 
 - view
@@ -8,7 +8,7 @@ The following operations can be performed on the expense records using this appl
 - edit
 - delete
 
-The application is built using React.js, Redux, Node.js, Express and MongoDB
+The application is built using React.js, Redux,Redux Thunk, Node.js, Express and MongoDB
 
 ## Common setup
 
