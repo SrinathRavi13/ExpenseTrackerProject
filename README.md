@@ -19,7 +19,7 @@ install NPM
 install MongoDB using the below command
 npm install mongodb --save
 
-git clone https://github.com/SrinathRavi13/ExpenseTracker.git
+git clone https://github.com/SrinathRavi13/ExpenseTrackerProject.git
 cd ExpenseTracker
 ```
 Setup React
