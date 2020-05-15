@@ -13,9 +13,11 @@ The application is built using React.js, Redux, Node.js, Express and MongoDB
 ## Common setup
 
 ```
-install MongoDB
 install Node
 install NPM
+
+install MongoDB using the below command
+npm install mongodb --save
 
 git clone https://github.com/SrinathRavi13/ExpenseTracker.git
 cd ExpenseTracker
