@@ -1,6 +1,6 @@
 import React from 'react'
-import { Row, Col, Container} from 'react-bootstrap'
-import ExpenseItem from './ExpenseItem'
+import { Row, Col, Container } from 'react-bootstrap'
+import Item from './ExpenseItem'
 import PropTypes from 'prop-types'
 
 /**
@@ -10,33 +10,56 @@ import PropTypes from 'prop-types'
 /** Creating property object */
 const propTypes = {
     //An Array
-    expenseList : PropTypes.array.isRequired
+    List: PropTypes.array.isRequired,
+    handle_UpdateItem: PropTypes.func.isRequired,
+    handle_DeleteItem: PropTypes.func.isRequired
 }
 
 /** 
  * Table Class
 */
-class ExpensesTable extends React.PureComponent {
+class Table extends React.PureComponent {
+    constructor(props){
+        super(props);
+        this.state = {
+            List : this.props.List
+        }
+    }
+
+    /** Update Table Item */
+    handle_UpdateItem = (item) => {
+        this.props.handle_UpdateItem(item);
+    }
+
+    /** Delete Table Item */
+    handle_DeleteItem = (item_id) => {
+        this.props.handle_DeleteItem(item_id);
+    }
 
     render() {
 
-        const {expenseList} = this.props;
-        let hasExpenses = (expenseList && expenseList.length > 0);
+        const { List } = this.props;
+        let hasExpenses = (List && List.length > 0);
 
         /** Show the expenses table if there is record */
-        const rows = (hasExpenses) ? (
+        const tableRows = (hasExpenses) ? (
             /** Generate table rows from the property */
-            expenseList.map((expense) =>
-              <ExpenseItem key={expense.id + expense.description} expenseItem={expense}/>
+            List.map((expense) =>
+                <Item key={expense.id + expense.description}
+                    Item={expense}
+                    handle_UpdateItem={this.handle_UpdateItem}
+                    handle_DeleteItem={this.handle_DeleteItem}
+                />
             )
         ) : (
                 <em>Please add some Expenses</em>
             );
 
         return (
-            <div>
+            <React.Fragment>
                 {/** Table Container */}
-                <Container fluid>
+                <Container id="table" fluid>
+                    {/** Table Header */}
                     <Row>
                         <Col xs={2}>
                             <h6>Description</h6>
@@ -55,14 +78,16 @@ class ExpensesTable extends React.PureComponent {
                         <Col xs={1}>
                         </Col>
                     </Row>
-                    {rows}
+                    {/** Table Body  */}
+                    {tableRows}
                 </Container>
-            </div>
+            </React.Fragment>
         );
     }
 }
 
 //Assigning the property object to the class
-ExpensesTable.propTypes = propTypes;
+Table.propTypes = propTypes;
 
-export default ExpensesTable;
+/** Export the Table class to be reusable */
+export default Table;
