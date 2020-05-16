@@ -5,7 +5,7 @@ import * as ConstVal from '../constants/contantValues'
 
 /** Defining component Properties */
 const propTypes = {
-    handleClose: PropTypes.func.isRequired
+    handleSave: PropTypes.func.isRequired
 }
 
 /** Class Basic Form */
@@ -97,4 +97,3 @@ Form.propTypes = propTypes;
 
 /**Exporting Form */
 export default Form;
-
