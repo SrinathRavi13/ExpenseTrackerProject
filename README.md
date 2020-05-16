@@ -13,7 +13,7 @@ The application is built using React.js, Redux,Redux Thunk, Node.js, Express and
 ## Common setup
 
 ```
-install Node
+install Node.js
 install NPM
 
 install MongoDB using the below command
