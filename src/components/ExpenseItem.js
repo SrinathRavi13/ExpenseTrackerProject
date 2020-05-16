@@ -51,8 +51,7 @@ class TableItem extends React.PureComponent {
             date: ConstVal.DATE_VALUE
         }
         this.setState({
-            isEdit: false,
-            date: Item.date
+            isEdit: false, date : Item.date
         });
 
         this.props.handle_UpdateItem(Item);
