@@ -61,7 +61,7 @@ class HomePage extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                <ExpensesTable/>
+                <ExpensesTable expenseList={this.props.expenseList}/>
                 <Modal show={showModal_AddExpense} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add Expense</Modal.Title>
@@ -86,7 +86,6 @@ const mapStateToProps = state => {
         totalTax : state.totalTax
     }
 }
-
 
 /**
  * Map actions to props
