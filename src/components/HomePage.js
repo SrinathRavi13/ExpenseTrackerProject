@@ -27,6 +27,11 @@ class HomePage extends React.Component {
         this.setState({ showModal_AddExpense: false });
     }
 
+    /** Close the Modal popup  once Expense Added*/
+    handleSave = (val) => {
+        this.setState({ showModal_AddExpense: val });
+    }
+
     /** Open Add Expense Modal popup */
     handleOpenModal = () => {
         this.setState({ showModal_AddExpense: true });
@@ -44,6 +49,8 @@ class HomePage extends React.Component {
 
     /** Save Expense */
     handleSave = (expense) => {
+        let expenseList = this.props.expenseList;
+        expense["id"] = (expenseList.length > 0) ? Math.max.apply(null, expenseList.map(e => e.id)) + 1 : 1;
         this.props.api_AddExpense(expense);
         this.handleClose(false);
     }
@@ -55,42 +62,42 @@ class HomePage extends React.Component {
         const { showModal_AddExpense } = this.state;
 
         return (
-            <React.Fragment>
-                <div data-test="Header">
+            <React.Fragment key="HomePage">
+                <React.Fragment key="Header">
                     <Container fluid>
                         <Row>
                             <Col>
-                                <h1 data-test="title">Expense Tracker</h1>
+                                <h1>Expense Tracker</h1>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={8}>
-                                <h5 data-test="totalAmount">The sub-total of expenses is : {totalAmount}</h5>
-                                <h5 data-test="totalTax">The total taxes is : {totalTax}</h5>
+                                <h5>The sub-total of expenses is : {totalAmount}</h5>
+                                <h5>The total taxes is : {totalTax}</h5>
                             </Col>
                             <Col>
-                                <Button data-test="addExpenseForm" variant="success" onClick={this.handleOpenModal}>Add new expense</Button>
+                                <Button variant="success" onClick={this.handleOpenModal}>Add new expense</Button>
                             </Col>
                         </Row>
                     </Container>
-                </div>
-                <div data-test="body">
-                    <Table data-test="expense_table"
+                </React.Fragment>
+                <React.Fragment key="body">
+                    <Table
                         List = {this.props.expenseList}
                         handle_UpdateItem={this.handle_UpdateExpense}
                         handle_DeleteItem={this.handle_DeleteExpense}
                     />
-                </div>
-                <div data-test="modalPopup">
+                </React.Fragment>
+                <React.Fragment key="popup">
                     <Modal show={showModal_AddExpense} onHide={this.handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title data-test="modalPopup_Title">Add Expense</Modal.Title>
+                            <Modal.Title>Add Expense</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <Form data-test="expense_form" handleSave={this.handleSave} />
+                            <Form handleSave={this.handleSave} />
                         </Modal.Body>
                     </Modal>
-                </div>
+                </React.Fragment>
             </React.Fragment>
         );
     }
@@ -102,9 +109,9 @@ class HomePage extends React.Component {
  */
 const mapStateToProps = state => {
     return {
-        expenseList: state.expenseReducer.expenseList,
-        totalAmount: state.expenseReducer.totalAmount,
-        totalTax: state.expenseReducer.totalTax
+        expenseList: state.expenseList,
+        totalAmount: state.totalAmount,
+        totalTax: state.totalTax
     }
 }
 
