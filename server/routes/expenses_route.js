@@ -72,7 +72,7 @@ router.put('/update', function (req, res) {
  * @return {json} - The expense List
  */
 router.delete('/delete', function (req, res) {
-    let key = req.query.key;
+    let key = Number(req.query.key);
     expensesModel.deleteExpense(key,(err,data) => {
         if(err) res.send("Error");
         res.json(data);

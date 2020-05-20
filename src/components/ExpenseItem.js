@@ -14,7 +14,7 @@ const propTypes = {
 class TableItem extends React.PureComponent {
     /** Local State */
     state = {
-        _id: this.props.Item._id,
+        id: this.props.Item.id,
         description: this.props.Item.description,
         amount: this.props.Item.amount,
         taxes: this.props.Item.taxes,
@@ -42,9 +42,9 @@ class TableItem extends React.PureComponent {
 
     /** Update an Item - Update button event*/
     handle_UpdateItem = () => {
-        const { _id, description, amount, taxes } = this.state;
+        const { id, description, amount, taxes } = this.state;
         const Item = {
-            _id: _id,
+            id: id,
             description: description,
             amount: Number(amount),
             taxes: Number(taxes),
@@ -60,13 +60,13 @@ class TableItem extends React.PureComponent {
 
     /** Delete an Item */
     handle_DeleteItem = () => {
-        const { _id } = this.state;
-        this.props.handle_DeleteItem(_id);
+        const { id } = this.state;
+        this.props.handle_DeleteItem(id);
     }
 
     render() {
 
-        let { isEdit, _id, description, amount, taxes, date } = this.state;
+        let { isEdit, id, description, amount, taxes, date } = this.state;
 
         let _date = (date === undefined) ? new Date(new Date().toISOString()) : new Date(new Date(date).toISOString());
 
@@ -83,9 +83,9 @@ class TableItem extends React.PureComponent {
         let newDate = `${year}-${month}-${day} at ${hour}:${minute}`
 
         return (
-            <div>
+            <div id={id}>
                 {/** Table Item */}
-                <Container fluid>
+                <Container id="row" fluid>
                     <Row>
                         {/** Description */}
                         <Col xs={2}>
