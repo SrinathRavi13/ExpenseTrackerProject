@@ -3,7 +3,7 @@
  * @author - Srinath Ravi <srinath_ravi@hotmail.com> 
  */
 
-import store from '../store';
+import {store} from '../store';
 import * as actionTypes from '../constants/actionTypes'
 import * as api from '../api/api'
 
