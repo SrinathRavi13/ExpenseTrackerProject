@@ -63,7 +63,7 @@ export const updateExpense = expense => {
 export const deleteExpense = id => {
     return {
         type : actionTypes.DELETE_EXPENSE,
-        id : id
+        _id : id
     }
 }
 
