@@ -31,7 +31,7 @@ class Form extends React.PureComponent {
             return false;
         }
 
-        let expense = {id: 0, description: description, amount: amount, taxes: taxes, date: ConstVal.DATE_VALUE }
+        let expense = {description: description, amount: amount, taxes: taxes, date: ConstVal.DATE_VALUE }
         this.props.handleSave(expense);
     }
 

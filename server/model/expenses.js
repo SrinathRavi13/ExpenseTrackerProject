@@ -4,6 +4,7 @@
  * 
  */
 
+const ObjectId = require('mongodb').ObjectID;
 const getDB = require('../database/dbConn').getDB_Connection;
 const collectionName = "expenses";
 
@@ -16,9 +17,7 @@ const collectionName = "expenses";
 const getAllExpenses = async (callback) => {
 
     try {
-
         const db = getDB();
-
         let promise = () => {
             return new Promise((resolve, reject) => {
                 db.collection(collectionName).find({}).toArray((err, res) => {
@@ -79,7 +78,7 @@ const updateExpense = async (expense, callback) => {
         let promise = () => {
             return new Promise((resolve, reject) => {
                 const collection = db.collection(collectionName);
-                const query = { id: expense.id }
+                const query = { _id: ObjectId(expense.id) }
                 let newValues = {
                     $set: {
                         description: expense.description,
@@ -119,7 +118,7 @@ const deleteExpense = async (key, callback) => {
         let promise = () => {
             return new Promise((resolve, reject) => {
                 const collection = db.collection(collectionName);
-                const query = { id: key }
+                const query = { _id: ObjectId(key) }
                 collection.deleteOne(query, (err, res) => {
                     err ? reject(err) : resolve(res);
                 })
