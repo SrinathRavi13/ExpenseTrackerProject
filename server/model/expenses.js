@@ -78,7 +78,7 @@ const updateExpense = async (expense, callback) => {
         let promise = () => {
             return new Promise((resolve, reject) => {
                 const collection = db.collection(collectionName);
-                const query = { _id: ObjectId(expense.id) }
+                const query = { _id: ObjectId(expense._id) }
                 let newValues = {
                     $set: {
                         description: expense.description,

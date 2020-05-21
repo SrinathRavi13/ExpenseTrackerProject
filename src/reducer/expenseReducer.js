@@ -74,7 +74,7 @@ const expenseReducer = (state = intialState, action) => {
                 totalTax: getTotalTaxes(expenseList)
             }
         case actionTypes.DELETE_EXPENSE:
-            let filteredObj = state.expenseList.filter(e => e._id !== action.id);
+            let filteredObj = state.expenseList.filter(e => e._id !== action._id);
             return {
                 ...state,
                 expenseList: filteredObj,

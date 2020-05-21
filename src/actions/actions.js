@@ -3,7 +3,7 @@
  * @author - Srinath Ravi <srinath_ravi@hotmail.com> 
  */
 
-import store from '../store';
+import {store} from '../store';
 import * as actionTypes from '../constants/actionTypes'
 import * as api from '../api/api'
 
@@ -63,7 +63,7 @@ export const updateExpense = expense => {
 export const deleteExpense = id => {
     return {
         type : actionTypes.DELETE_EXPENSE,
-        id : id
+        _id : id
     }
 }
 

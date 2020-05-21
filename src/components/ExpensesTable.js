@@ -45,7 +45,7 @@ class Table extends React.PureComponent {
         const tableRows = (hasExpenses) ? (
             /** Generate table rows from the property */
             List.map((expense) =>
-                <Item key={expense._id}
+                <Item key={expense._id+expense.description}
                     Item={expense}
                     handle_UpdateItem={this.handle_UpdateItem}
                     handle_DeleteItem={this.handle_DeleteItem}

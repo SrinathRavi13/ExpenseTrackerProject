@@ -66,7 +66,7 @@ class TableItem extends React.PureComponent {
 
     render() {
 
-        let { isEdit, _id, description, amount, taxes, date } = this.state;
+        let { isEdit, description, amount, taxes, date } = this.state;
 
         let _date = (date === undefined) ? new Date(new Date().toISOString()) : new Date(new Date(date).toISOString());
 
